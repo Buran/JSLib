@@ -1,7 +1,5 @@
-//http://javascriptweblog.wordpress.com/2011/08/08/fixing-the-javascript-typeof-operator/
 (function() {
 	var
-		//standardConstructors = [String, Number, Boolean, Date, Error, Array, Function, RegExp, Math],
 		//String, Number, Boolean, Array, Function, RegExp
 		standardObjects = ['', 0, true, [], function(){}, /foo/],
 
