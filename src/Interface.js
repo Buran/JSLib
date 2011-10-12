@@ -1,4 +1,5 @@
 (function() {
+	'use strict';
 	var
 		//String, Number, Boolean, Array, Function, RegExp
 		standardObjects = ['', 0, true, [], function(){}, /foo/],
@@ -8,7 +9,6 @@
 				i = 0,
 				l = standardObjects.length,
 				standardType = (v === null || typeof v === 'undefined') && v;
-			window.console && console.log(standardType, v, standardType === v);
 			if (!(type instanceof Array)) {
 				type = [type];
 			}
