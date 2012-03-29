@@ -1,3 +1,6 @@
+/**
+ * TODO: make interface for concrete enum elements. E.g. function() {}.interface([1, false]);
+ */
 (function() {
 	'use strict';
 	var
@@ -19,13 +22,13 @@
 				}
 			}
 			return type.some(function(el) {
-				return standardType !== false ? standardType === el : v instanceof el;
+				return standardType === false ? v instanceof el : standardType === el;
 			});
 		},
 
 		checkInterface = function (iface, args) {
-			var argsCnt = args.length, i, l;
-			// Removed checking arguments count to allow optional parameters
+			var argsCnt = args.length, i;
+			// Remove checking arguments count to allow optional parameters
 			/*if (argsCnt !== iface.length) {
 				return new TypeError('interface arguments count and passed arguments mismatch');
 			}*/
@@ -48,7 +51,7 @@
 			for (i = 0, l = newFunc.__interface.length; i < l; i++) {
 				err = checkInterface(newFunc.__interface[i], arguments);
 				if (!(err instanceof TypeError)) {
-					return newFunc.__originalFunc.apply(this, Array.prototype.splice(arguments, 0));
+					return newFunc.__originalFunc.apply(this, Array.prototype.slice.call(arguments));
 				}
 			}
 			throw err;
