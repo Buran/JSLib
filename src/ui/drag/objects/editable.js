@@ -16,20 +16,20 @@ var EditableRange = function(body, slider, range, options) {
 
 	return new Controller(move, resize, slider, range);
 
-	function Controller(drag, resize, slider, range) {
+	function Controller(move, resize, slider, range) {
 		var
 			overflowPosition = 0,
 			overflowSize = 0
 		;
 
-		drag.startDragEvent(function() {
+		move.startDragEvent(function() {
 			if (!resize.isActive()) {
 				overflowPosition = overflowSize = 0;
 				body.addClass('drag');
 			}
 		});
 
-		drag.changePositionEvent(function(dx, dy) {
+		move.changePositionEvent(function(dx, dy) {
 			if (!resize.isActive()) {
 				var newPosition = range.getPosition() + dx + overflowPosition;
 				slider.setRangePosition(range, newPosition);
@@ -37,7 +37,7 @@ var EditableRange = function(body, slider, range, options) {
 			}
 		});
 
-		drag.finishDragEvent(function() {
+		move.finishDragEvent(function() {
 			if (!resize.isActive()) {
 				body.removeClass('drag');
 			}

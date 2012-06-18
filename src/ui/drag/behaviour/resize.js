@@ -1,4 +1,4 @@
-Namespace('Behaviour').Resize = function(dragging, element) {
+Namespace('Behaviour').Resize = function(move, element) {
 
 	var
 		self = this,
@@ -11,15 +11,16 @@ Namespace('Behaviour').Resize = function(dragging, element) {
 	this.vResizeEvent = new Event();
 
 	element.mousemove(function(e) {
+
 		if (elements.activeElement()) {
 			return;
 		}
+
 		var
 			pos = element.offset(),
 			x = e.pageX - pos.left,
 			y = e.pageY - pos.top
 		;
-
 		if (x <= 10 || x >= element.outerWidth() - 10) {
 			hResize = x <= 10 ? Behaviour.WEST : Behaviour.EAST;
 			//todo: move to event
@@ -30,7 +31,8 @@ Namespace('Behaviour').Resize = function(dragging, element) {
 			$('html').removeClass('resizeX');
 		}
 	});
-	element.mouseout(function(e) {
+
+	element.mouseout(function() {
 		if (elements.activeElement()) {
 			return;
 		}
@@ -38,7 +40,7 @@ Namespace('Behaviour').Resize = function(dragging, element) {
 		$('html').removeClass('resizeX');
 	});
 
-	dragging.changePositionEvent(function(dx, dy) {
+	move.changePositionEvent(function(dx, dy) {
 		if (hResize !== false) {
 			self.hResizeEvent(hResize, dx);
 		}
@@ -50,6 +52,10 @@ Namespace('Behaviour').Resize = function(dragging, element) {
 			}
 
 		}
+	});
+
+	move.finishDragEvent(function() {
+		hResize = vResize = false;
 	});
 
 	this.isActive = function() {

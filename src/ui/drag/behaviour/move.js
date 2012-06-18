@@ -1,5 +1,4 @@
 Namespace('Behaviour').Move = Behaviour.Drag.extend(function(elements, document, element, options) {
-
 	var
 	self = new this.parent.constructor(elements, document, element),
 	accumulatedX = 0,

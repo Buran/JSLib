@@ -1,6 +1,6 @@
 var elements = (function() {
 	var
-		activeElement,
+		activeElement = false,
 		list = []
 	;
 	return {
@@ -8,9 +8,9 @@ var elements = (function() {
 			if (!arguments.length) {
 				return activeElement;
 			}
-			if (list.indexOf(element[0]) !== -1) {
-				activeElement = element;
-			}
+			list.some(function(el) {
+				return el === element[0];
+			}) && (activeElement = element[0]);
 		},
 		reset: function() {
 			activeElement = false;
@@ -19,12 +19,9 @@ var elements = (function() {
 			if (!element || !element.length) {
 				return;
 			}
-			element.each(function() {
-				var element = this;
-				!list.some(function(el) {
-					return el === element;
-				}) && list.push(element);
-			});
+			!list.some(function(el) {
+				return el === element[0];
+			}) && list.push(element[0]);
 		},
 		remove: function(element) {
 			var i = list.indexOf(element[0]);

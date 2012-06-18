@@ -31,7 +31,7 @@ Namespace('Behaviour').Drag = function(elements, document, element) {
 
 	function startBehaviour(e) {
 		if (!elements.activeElement()) {
-			elements.activeElement(element.filter(e.target));
+			elements.activeElement(element.filter(e.currentTarget));
 			active = true;
 			startX = e.pageX;
 			startY = e.pageY;
