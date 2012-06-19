@@ -1,0 +1,61 @@
+@height: 10px;
+@width: 1000px;
+@border-width: 1px;
+@border-color: #ffef6b;
+@background-color: #ffffd4;
+@background-color: #E3E3E3;
+@out: 5px;
+
+html.resizeX {
+	cursor: e-resize !important;
+}
+
+.slider-decor {
+	position: relative;
+	float: left;
+	padding: 20px;
+	border-radius: 10px;
+	box-shadow: inset 0px 1px 4px 0px #aaa;
+}
+
+.slider {
+	position: relative;
+	width: @width;
+	height: @height;
+	//border: @border-width solid @border-color;
+	background: @background-color;
+
+	.tick {
+		z-index: 0;
+		position: absolute;
+		bottom: -1px;
+		width: 1px;
+		height: 1px * 2 + @height;
+		background: @background-color;
+
+		&:nth-of-type(odd) {
+			bottom: -2px;
+			height: 2px * 2 + @height;
+		}
+	}
+}
+
+.slider .ranges {
+	z-index: 1;
+	position: relative;
+	top: -1 * @border-width - @out;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+
+	li {
+		position: absolute;
+		top: 0;
+		left: 20px;
+		width: 200px;
+		height: @height + (@border-width + @out) * 2;
+		border-radius: 4px;
+		background: rgba(235, 223, 120, .5);
+		text-align: center;
+	}
+}
