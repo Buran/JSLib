@@ -1,8 +1,7 @@
 Namespace('Behaviour').Move = Behaviour.Drag.extend(function(elements, document, element, options) {
-	var
-	self = new this.parent.constructor(elements, document, element),
-	accumulatedX = 0,
-	accumulatedY = 0
+	var self = new this.parent.constructor(elements, document, element)
+		, accumulatedX = 0
+		, accumulatedY = 0
 	;
 
 	self.startDragEvent(function() {
@@ -19,6 +18,7 @@ Namespace('Behaviour').Move = Behaviour.Drag.extend(function(elements, document,
 			accumulatedX -= dx * options.stepX;
 			accumulatedY -= dy * options.stepY;
 		}
-	};
+	}.interface(Number, Number);
+
 	return self;
-});
+}.interface(Object, jQuery, jQuery, Object));

@@ -48,4 +48,4 @@ Namespace('Behaviour').Drag = function(elements, document, element) {
 		self.changePositionEvent(dx, dy);
 	};
 
-};
+}.interface(Object, jQuery, jQuery);
